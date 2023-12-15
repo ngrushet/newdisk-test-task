@@ -4,23 +4,30 @@ import { UpdateLessonDto } from './dto/update-lesson.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from './entities/lesson.entity';
 import { Repository } from 'typeorm';
+import { Evaluation } from 'src/evaluations/entities/evaluation.entity';
+import { CreateEvaluationDto } from 'src/evaluations/dto/create-evaluation.dto';
 
 @Injectable()
 export class LessonsService {
     constructor(
-        @InjectRepository(Lesson) 
-        private lessonRepository: Repository<Lesson>) { };
+        @InjectRepository(Lesson)
+        private lessonRepository: Repository<Lesson>,
+    ) { };
 
     create(createLessonDto: CreateLessonDto): Promise<Lesson> {
         return this.lessonRepository.save(createLessonDto);
     }
 
     findAll() {
-        return this.lessonRepository.find();
+        return this.lessonRepository
+            .createQueryBuilder('lesson')
+            .leftJoinAndSelect('lesson.evaluations', 'evaluation')
+            .leftJoinAndSelect('evaluation.user', 'user')
+            .getMany();
     }
 
     findOne(id: number) {
-        return this.lessonRepository.findOneBy({id: id});
+        return this.lessonRepository.findOneBy({ id: id });
     }
 
     update(id: number, updateLessonDto: UpdateLessonDto) {
