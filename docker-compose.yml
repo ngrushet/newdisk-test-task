@@ -1,10 +1,18 @@
 version: '3'
 services:
+
+  nest-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file:
+      - ./.production.env
+    ports:
+      - 8080:8080
+
   postgres-db:
     image: postgres
-    environment:
-      - POSTGRES_USER=your_username
-      - POSTGRES_PASSWORD=your_password
-      - POSTGRES_DB=your_database
+    env_file:
+      - ./.production.env
     ports:
       - 5432:5432

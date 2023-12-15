@@ -13,6 +13,7 @@ async function bootstrap() {
         .setVersion('1.0.0')
         .addTag('by ngrushet')
         .build();
+
     app.setGlobalPrefix('api');
 
     app.useGlobalPipes(

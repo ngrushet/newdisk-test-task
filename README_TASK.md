@@ -21,7 +21,7 @@
 
 - `GET /users`
 - `POST /users`
-- `GET /lessons/{id}`
+- `GET /lessons/`
 - `POST /lessons`
 - `POST /lessons/{id}/evaluations`
 
