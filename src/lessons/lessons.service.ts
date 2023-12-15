@@ -16,18 +16,23 @@ export class LessonsService {
     }
 
     findAll() {
-        return `This action returns all lessons`;
+        return this.lessonRepository.find();
     }
 
     findOne(id: number) {
-        return `This action returns a #${id} lesson`;
+        return this.lessonRepository.findOneBy({id: id});
     }
 
     update(id: number, updateLessonDto: UpdateLessonDto) {
-        return `This action updates a #${id} lesson`;
+        return this.lessonRepository
+            .createQueryBuilder()
+            .update(Lesson) // Замените "User" на вашу сущность пользователя
+            .set(updateLessonDto) // Используйте метод set для указания обновленных значений
+            .where("id = :id", { id })
+            .execute();
     }
 
     remove(id: number) {
-        return `This action removes a #${id} lesson`;
+        return this.lessonRepository.delete(id);
     }
 }

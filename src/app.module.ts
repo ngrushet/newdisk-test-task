@@ -3,6 +3,9 @@ import { LessonsModule } from './lessons/lessons.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { Lesson } from './lessons/entities/lesson.entity';
+import { User } from './users/entities/user.entity';
+import { Evaluation } from './lessons/entities/evaluation.entity';
 
 @Module({
     imports: [
@@ -18,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
             username: process.env.POSTGRES_USERNAME,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DATABASE,
-            entities: [],
+            entities: [Lesson, User, Evaluation],
             synchronize: true,
         }),
     ],

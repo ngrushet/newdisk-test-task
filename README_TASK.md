@@ -19,20 +19,20 @@
 
 Сервис должен реализовывать **API** с следующими эндпоинтами:
 
-- `GET /user`
+- `GET /users`
 - `POST /users`
 - `GET /lessons/{id}`
 - `POST /lessons`
 - `POST /lessons/{id}/evaluations`
 
-## `GET /user`
+## `GET /users`
 
 Используется для получения списка пользователей. 
 
 Пример запроса:
 
 ```bash
-curl -X GET 'http://localhost:8080/api/user' -H 'Content-Type: application/json'
+curl -X GET 'http://localhost:8080/api/users' -H 'Content-Type: application/json'
 ```
 
 Пример ответа:
@@ -52,14 +52,14 @@ curl -X GET 'http://localhost:8080/api/user' -H 'Content-Type: application/json'
 ]
 ```
 
-## `POST /user`
+## `POST /users`
 
 Используется для создания пользователя.
 
 Пример запроса:
 
 ```bash
-curl -X POST 'http://localhost:8080/api/user' -H "Content-Type: application/json" -d '{"name": "Джонни", "email": "silverhand@mail.com"}'
+curl -X POST 'http://localhost:8080/api/users' -H "Content-Type: application/json" -d '{"name": "Джонни", "email": "silverhand@mail.com"}'
 ```
 
 Пример ответа:

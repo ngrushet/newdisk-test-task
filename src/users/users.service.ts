@@ -20,11 +20,16 @@ export class UsersService {
     }
 
     findOne(id: number) {
-        return this.userRepository.findOneBy({id: id});
+        return this.userRepository.findOneBy({ id: id });
     }
 
     update(id: number, updateUserDto: UpdateUserDto) {
-        return this.userRepository.update(id, updateUserDto)
+        return this.userRepository
+            .createQueryBuilder()
+            .update(User) // Замените "User" на вашу сущность пользователя
+            .set(updateUserDto) // Используйте метод set для указания обновленных значений
+            .where("id = :id", { id })
+            .execute();
     }
 
     remove(id: number) {
