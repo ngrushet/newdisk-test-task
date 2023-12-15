@@ -12,14 +12,14 @@ export class Lesson {
     id: number;
 
     @ApiProperty({
-        example: "музыка",
+        example: 'музыка',
         description: 'Название урока',
     })
     @Column({ length: 100 })
     name: string;
 
     @ApiProperty({
-        example: "music",
+        example: 'music',
         description: 'Код урока',
     })
     @Column({ length: 20 })
@@ -27,8 +27,8 @@ export class Lesson {
 
     @ApiProperty({
         example: [],
-        description: 'Оценки пользователей за урок'
+        description: 'Оценки пользователей за урок',
     })
-    @OneToMany(() => Evaluation, evaluation => evaluation.lesson)
+    @OneToMany(() => Evaluation, (evaluation) => evaluation.lesson)
     evaluations: Evaluation[];
 }

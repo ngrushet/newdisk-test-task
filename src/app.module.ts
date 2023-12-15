@@ -30,4 +30,4 @@ import { EvaluationsModule } from './evaluations/evaluations.module';
     controllers: [],
     providers: [],
 })
-export class AppModule { }
+export class AppModule {}

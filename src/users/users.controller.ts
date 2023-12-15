@@ -17,7 +17,7 @@ import { User } from './entities/user.entity';
 @Controller('users')
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
-    
+
     @ApiOperation({ summary: 'Создать пользователя' })
     @ApiResponse({ status: 201, type: User })
     @Post()

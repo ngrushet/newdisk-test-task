@@ -1,5 +1,5 @@
-import { IsNumber } from "@nestjs/class-validator"
-import { ApiProperty } from "@nestjs/swagger"
+import { IsNumber } from '@nestjs/class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateEvaluationDto {
     @ApiProperty({
@@ -7,12 +7,12 @@ export class CreateEvaluationDto {
         description: 'id пользователя',
     })
     @IsNumber()
-    user_id: number
+    user_id: number;
 
     @ApiProperty({
         example: 100,
         description: 'Оценка пользователя по уроку',
     })
     @IsNumber()
-    score: number
+    score: number;
 }

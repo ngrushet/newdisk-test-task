@@ -7,36 +7,36 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class EvaluationsService {
-
     constructor(
         @InjectRepository(Evaluation)
-        private evaluationsRepository: Repository<Evaluation>
-    ) { }
+        private evaluationsRepository: Repository<Evaluation>,
+    ) {}
 
     create(lessonId: number, createEvaluationDto: CreateEvaluationDto) {
-        const { user_id, score } = createEvaluationDto
+        const { user_id, score } = createEvaluationDto;
         const evaluationData: DeepPartial<Evaluation> = {
             user: { id: user_id },
             lesson: { id: lessonId },
-            score: score
+            score: score,
         };
 
-        return this.evaluationsRepository.save(evaluationData)
-            .then(new_eval => {
-                const { createdAt, user,lesson, ...answer } = new_eval;
+        return this.evaluationsRepository
+            .save(evaluationData)
+            .then((new_eval) => {
+                const { createdAt, user, lesson, ...answer } = new_eval;
                 return {
                     user_id: user.id,
-                    ...answer
+                    ...answer,
                 };
             });
     }
 
     findAll() {
-        return this.evaluationsRepository.find()
+        return this.evaluationsRepository.find();
     }
 
     findOne(id: number) {
-        return this.evaluationsRepository.findOneBy({ id: id })
+        return this.evaluationsRepository.findOneBy({ id: id });
     }
 
     update(id: number, updateEvaluationDto: UpdateEvaluationDto) {

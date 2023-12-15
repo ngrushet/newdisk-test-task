@@ -12,19 +12,19 @@ export class User {
     id: number;
 
     @ApiProperty({
-        example: "Александр",
+        example: 'Александр',
         description: 'Имя пользователя',
     })
     @Column({ length: 100 })
     name: string;
 
     @ApiProperty({
-        example: "test@test.ru",
+        example: 'test@test.ru',
         description: 'E-mail пользователя',
     })
     @Column({ length: 30 })
     email: string;
 
-    @OneToMany(() => Evaluation, evaluation => evaluation.user)
+    @OneToMany(() => Evaluation, (evaluation) => evaluation.user)
     evaluations: Evaluation[];
 }

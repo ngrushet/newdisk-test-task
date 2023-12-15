@@ -20,14 +20,13 @@ import { Lesson } from './entities/lesson.entity';
 export class LessonsController {
     constructor(
         private readonly lessonsService: LessonsService,
-        private readonly evaluationService: EvaluationsService
-    ) { }
+        private readonly evaluationService: EvaluationsService,
+    ) {}
 
     @ApiOperation({ summary: 'Создать занятие' })
     @ApiResponse({ status: 201 })
     @Post()
-    create(
-        @Body() createLessonDto: CreateLessonDto) {
+    create(@Body() createLessonDto: CreateLessonDto) {
         return this.lessonsService.create(createLessonDto);
     }
 
@@ -36,11 +35,14 @@ export class LessonsController {
     @Post(':id/evaluations')
     create_evaluation(
         @Param('id') id: string,
-        @Body() createEvaluationDto: CreateEvaluationDto) {
-        return this.evaluationService.create(+id, createEvaluationDto)
+        @Body() createEvaluationDto: CreateEvaluationDto,
+    ) {
+        return this.evaluationService.create(+id, createEvaluationDto);
     }
 
-    @ApiOperation({ summary: 'Получить список занятий с оценками пользователей' })
+    @ApiOperation({
+        summary: 'Получить список занятий с оценками пользователей',
+    })
     @ApiResponse({ status: 200 })
     @Get()
     findAll() {

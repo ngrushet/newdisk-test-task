@@ -12,7 +12,7 @@ export class LessonsService {
     constructor(
         @InjectRepository(Lesson)
         private lessonRepository: Repository<Lesson>,
-    ) { };
+    ) {}
 
     create(createLessonDto: CreateLessonDto): Promise<Lesson> {
         return this.lessonRepository.save(createLessonDto);
@@ -35,7 +35,7 @@ export class LessonsService {
             .createQueryBuilder()
             .update(Lesson) // Замените "User" на вашу сущность пользователя
             .set(updateLessonDto) // Используйте метод set для указания обновленных значений
-            .where("id = :id", { id })
+            .where('id = :id', { id })
             .execute();
     }
 

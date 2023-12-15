@@ -1,16 +1,16 @@
-import { IsString } from "@nestjs/class-validator";
+import { IsString } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateLessonDto {
     @ApiProperty({
-        example: "Музыка",
+        example: 'Музыка',
         description: 'Название урока',
     })
     @IsString()
     name: string;
-    
+
     @ApiProperty({
-        example: "music",
+        example: 'music',
         description: 'код урока',
     })
     @IsString()

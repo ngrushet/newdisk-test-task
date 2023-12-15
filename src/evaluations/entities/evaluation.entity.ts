@@ -24,17 +24,17 @@ export class Evaluation {
     })
     @Column()
     score: number;
-    
+
     @ApiProperty({
         example: '2023-12-16 00:35:39.473224',
         description: 'Время выставления оценки',
     })
-    @CreateDateColumn({select: false})
+    @CreateDateColumn({ select: false })
     createdAt: Date;
 
-    @ManyToOne(() => Lesson, lesson => lesson.evaluations)
+    @ManyToOne(() => Lesson, (lesson) => lesson.evaluations)
     lesson: Lesson;
 
-    @ManyToOne(() => User, user => user.evaluations)
+    @ManyToOne(() => User, (user) => user.evaluations)
     user: User;
 }

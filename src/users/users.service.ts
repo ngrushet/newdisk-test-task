@@ -9,7 +9,8 @@ import { Repository } from 'typeorm';
 export class UsersService {
     constructor(
         @InjectRepository(User)
-        private userRepository: Repository<User>) { };
+        private userRepository: Repository<User>,
+    ) {}
 
     create(createUserDto: CreateUserDto): Promise<User> {
         return this.userRepository.save(createUserDto);
@@ -28,11 +29,11 @@ export class UsersService {
             .createQueryBuilder()
             .update(User) // Замените "User" на вашу сущность пользователя
             .set(updateUserDto) // Используйте метод set для указания обновленных значений
-            .where("id = :id", { id })
+            .where('id = :id', { id })
             .execute();
     }
 
     remove(id: number) {
-        return this.userRepository.delete(id)
+        return this.userRepository.delete(id);
     }
 }
